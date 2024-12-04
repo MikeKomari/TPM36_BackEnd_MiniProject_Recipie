@@ -55,8 +55,8 @@
     <x-navbar/>
 
     <!-- Form -->
-    <h1 class="mb-4 text-center">Add New Recipe</h1>
-    <form action="{{ route('getStoreRecipes') }}" method="POST" style="display: flex; align-items:center; justify-content:center; flex-direction:column; text-align:center;" enctype="multipart/form-data">
+    <h1 class="mb-4 text-center">Edit {{$recipe->RecipeName}}</h1>
+    <form action="{{ route('editRecipe', $recipe->id) }}" method="POST" style="display: flex; align-items:center; justify-content:center; flex-direction:column; text-align:center;" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
         <label for="RecipeName" class="form-label">Recipe Name</label>

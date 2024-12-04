@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('Steps');
             $table->foreignId('CategoryId')->references('id')->on('categories')->cascadeOnDelete()->cascadeOnUpdate();
         
-            // $table->string("DishImage");
+            $table->string("RecipeImage")->nullable();
         });
     }
 

@@ -24,7 +24,7 @@ class RecipeFactory extends Factory
             'Ingredients' => fake()->words($nb = 5, $asText = true),
             'Steps' => fake()->sentences($nb = 3, $asText = true),
             'CategoryId' => rand(1, 3),
-            // 'DishImage' => fake()->image(), 
+            'RecipeImage' => fake()->imageUrl(), 
         ];
     }
 }

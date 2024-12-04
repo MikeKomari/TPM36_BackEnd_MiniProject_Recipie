@@ -11,6 +11,9 @@
     <title>Recipie</title>
 
     <style>
+        body{
+            min-height: 100vh;
+        }
         .hero-section {
             background-color: #f8f9fa;
             padding: 80px 0;
@@ -51,7 +54,7 @@
     <div class="hero-section">
         <h1 class="display-4">Welcome to <span style="font-weight: 800; color:khaki;">Recipie!</span></h1>
         <p class="lead">Discover, share, and add your favorite recipes all in one place.</p>
-        <a href="#features" class="button-cta">Explore Features</a>
+        <a href="/recipes/create" class="button-cta">Add your own Recipes!</a>
     </div>
 
     <!-- Features Section -->

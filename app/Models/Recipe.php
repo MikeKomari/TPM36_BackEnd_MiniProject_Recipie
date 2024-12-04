@@ -13,7 +13,8 @@ class Recipe extends Model
         "RecipeName",
         "Ingredients",
         "Steps",
-        "CategoryId"    
+        "CategoryId", 
+        "RecipeImage", 
     ];
 
     public function category(){
