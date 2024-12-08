@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Middleware\isLogin;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +31,9 @@ Route::post('/recipes/edit/{recipeId}', [RecipeController::class, 'editRecipe'])
 //Delete
 Route::post('/recipes/delete/{recipeId}', [RecipeController::class, 'deleteRecipe'])->name('deleteRecipe');
 
+// API
+Route::get('/recipes/api', [RecipeController::class, 'recipesAPI'])->name('recipesAPI'); 
+
 
 //AUTH
 Route::get('/register', [AuthenticationController::class, 'getRegister'])->name('getRegister');
@@ -37,3 +41,6 @@ Route::post('/register', [AuthenticationController::class, 'register'])->name('r
 Route::get('/login', [AuthenticationController::class, 'getLogin'])->name('getLogin');
 Route::post('/login', [AuthenticationController::class, 'login'])->name('login');
 Route::post('/logout', [AuthenticationController::class, 'logout'])->name('logout');
+
+//Sending Email
+Route::get('/send-email/{email}', [EmailController::class, 'sendEmail'])->name('sendEmail');

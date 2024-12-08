@@ -2,31 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\RecipeCollection;
-use App\Models\Category;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
-class RecipeController extends Controller
+class RecipeAPIController extends Controller
 {
-    function getHome(){
-        return view('home');
+    function getRecipes(){
+        $recipes = Recipe::all();
+        return response()->json([    
+            'data' => $recipes,
+            'status'=> 200
+        ]);
     }
 
-    function getRecipesView(){
-        $recipes = Recipe::all();
-        $categories = Category::all();
-        return view('recipe', compact("recipes",'categories'));
-    }
-    
-    function getCreateRecipes(){
-        $recipes = Recipe::all();
-        $categories = Category::all();
-        return view('recipes.create', compact("recipes",'categories'));
-    }
-
-    function getStoreRecipes(Request $request){
+    function createRecipeAPI(Request $request){
         $request->validate([
             'RecipeName' => 'required',
             'Ingredients' => 'required',
@@ -53,18 +42,10 @@ class RecipeController extends Controller
             "RecipeImage" => $filename,
         ]);
 
-        // return response()->json(['message' => 'Request reached the controller', 'data' => $request->all()]);
-        return redirect()->route('getCreateRecipes');
+        return response('New Recipe Inputted Successfully', 201);
     }
 
-    //Update
-    function getEditRecipePage($recipeId){
-        $recipe = Recipe::findOrFail($recipeId);
-        $categories = Category::all();
-        return view('recipes.edit', compact("recipe",'categories'));
-    }
-
-    function editRecipe(Request $request, $recipeId) {
+    function updateRecipeAPI(Request $request, $recipeId) {
         $request->validate([
             'RecipeName' => 'required',
             'Ingredients' => 'required',
@@ -91,36 +72,12 @@ class RecipeController extends Controller
             "RecipeImage" => $filename,
         ]);
 
-        return redirect(route('recipe'));
+        return response('Recipe Updated Successfully', 201);
     }
 
-    //Delete
-    function deleteRecipe($recipeId){
+    function deleteRecipeAPI($recipeId){
         $recipe = Recipe::findOrFail($recipeId);
         Recipe::destroy($recipeId);
-        return redirect(route('recipe'));
-    }
-
-    //Honestly not needed anymore
-    function recipesAPI(){
-        $recipes = Recipe::all();
-        return RecipeCollection::collection($recipes);
-
-        //Works but not best practice
-        // if($recipes != null){
-        //     return [
-        //         'data' => $recipes,
-        //         'message' => 'Get Recipes Success 200.',
-        //         'status' => 200
-        //     ];
-        // }else{
-        //     return [
-        //     'message'=>'Get Recipes Fail',
-        //     'status' => 400
-        //     ];
-        // }
-
-        // Kalau mau cari specific id, buat satuan lagi make:RecipeSatuanCollection
-
+        return response('Recipe Deleted Successfully', 201);
     }
 }
