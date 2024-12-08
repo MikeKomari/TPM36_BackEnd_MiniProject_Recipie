@@ -14,11 +14,18 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="#">Login</a>
+        <a class="nav-link" href="/login">Login</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="#">SignUp</a>
+        <a class="nav-link" href="/register">Register</a>
+      </li>
+      
+      <li class="nav-item">
+        <form action="{{route('logout')}}" method="POST">
+          @csrf
+          <button type="submit" class="btn btn-primary">LogOut</button>
+        </form>
       </li>
       <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

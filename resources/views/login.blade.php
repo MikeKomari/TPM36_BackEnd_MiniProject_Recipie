@@ -50,46 +50,27 @@
 
     <x-navbar/>
 
-    <!-- Hero Section -->
-    <div class="hero-section">
-        <h1 class="display-4"> Hello, 
-            @if(!Cookie::get('name'))
-                Guest
-            @else
-                {{ Cookie::get('name') }}
-            @endif
-        </h1>
-        <h1 class="display-4">Welcome to <span style="font-weight: 800; color:khaki;">Recipie!</span></h1>
-        <p class="lead">Discover, share, and add your favorite recipes all in one place.</p>
-        <a href="/recipes/create" class="button-cta">Add your own Recipes!</a>
-    </div>
-
-    <!-- Features Section -->
-    <div id="features" class="container my-5">
-        <div class="row text-center">
-            <div class="col-md-4">
-                <div class="feature-icon">
-                    <i class="bi bi-book"></i>
-                </div>
-                <h3 class="section-title">Browse Recipes</h3>
-                <p class="feature-description">Browse through a collection of diverse recipes and discover something new every day.</p>
-            </div>
-            <div class="col-md-4">
-                <div class="feature-icon">
-                    <i class="bi bi-pencil-square"></i>
-                </div>
-                <h3 class="section-title">Add Your Recipe</h3>
-                <p class="feature-description">Submit your own recipes for others to enjoy, and share your culinary knowledge with the community.</p>
-            </div>
-            <div class="col-md-4">
-                <div class="feature-icon">
-                    <i class="bi bi-search"></i>
-                </div>
-                <h3 class="section-title">Search & Filter</h3>
-                <p class="feature-description">Search recipes based on ingredients, categories, and difficulty level to find the perfect dish for any occasion.</p>
-            </div>
+    <form action="{{route('login')}}" method="POST">
+        @csrf
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Enter email">
+            
+            @error('email')
+                <p style="color: red;">{{ $message }}</p>
+            @enderror
         </div>
-    </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
+
+            @error('password')
+                <p style="color: red;">{{ $message }}</p>
+            @enderror
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
     <!-- Footer Section -->
     <footer class="text-center py-4 bg-dark text-white">
