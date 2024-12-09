@@ -17,4 +17,4 @@ Route::post('/delete-recipes/{recipeId}', [RecipeAPIController::class, 'deleteRe
 
 Route::post('/register', [AuthenticationAPIController::class, 'register']);
 Route::post('/login', [AuthenticationAPIController::class, 'login']);
-Route::post('/logout', [AuthenticationAPIController::class, 'logout']);
+Route::post('/logout', [AuthenticationAPIController::class, 'logout'])->middleware('auth:sanctum');

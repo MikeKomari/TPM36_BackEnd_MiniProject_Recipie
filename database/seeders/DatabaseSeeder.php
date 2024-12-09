@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         \App\Models\Recipe::factory(20)->create();
+
+        
     }
 }

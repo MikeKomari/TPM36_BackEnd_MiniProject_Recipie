@@ -44,10 +44,7 @@ class AuthenticationAPIController extends Controller
     }
 
     function logout(Request $request){
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        Cookie::expire('name');
+        $request->user()->currentAccessToken()->delete();
         return response('logged out successfully', 201);;
     }
 }
